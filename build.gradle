@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.hibernate:hibernate-core:6.1.7.Final'
+    implementation 'mysql:mysql-connector-java:6.0.6'
+//    compileOnly('org.hibernate:hibernate-core:5.2.2.Final')
+//    compileOnly('mysql:mysql-connector-java:6.0.6')
+   // compileOnly group: 'org.slf4j', name: 'slf4j-log4j12', version: '+'
+    implementation group: 'org.slf4j', name: 'slf4j-log4j12', version: '+'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
