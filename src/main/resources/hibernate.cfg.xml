@@ -5,24 +5,24 @@
 
     <session-factory>
 
-        <property name = "hibernate.dialect">
+        <property name="hibernate.dialect">
             org.hibernate.dialect.MySQLDialect
         </property>
 
-        <property name = "hibernate.connection.driver_class">
-            com.mysql.jdbc.Driver
+        <property name="hibernate.connection.driver_class">
+            com.mysql.cj.jdbc.Driver
         </property>
 
-        <property name = "hibernate.connection.url">
+        <property name="hibernate.connection.url">
             jdbc:mysql://localhost:3306/library?serverTimezone=UTC
         </property>
 
 
-        <property name = "hibernate.connection.username">
+        <property name="hibernate.connection.username">
             root
         </property>
 
-        <property name = "hibernate.connection.password">
+        <property name="hibernate.connection.password">
             21032011philia
         </property>
 
@@ -40,12 +40,12 @@
 
         <property name="hbm2ddl.auto">create</property>
 
-         <property name="show_sql">true</property>
+        <property name="show_sql">true</property>
 
-<!--        <property name="default_schema">library</property>&ndash;&gt;-->
+        <!--        <property name="default_schema">library</property>&ndash;&gt;-->
 
-<!--        <mapping class="ex_004_get_some_fields.entity.Author" />-->
-<!--        <mapping class="ex_004_get_some_fields.entity.Book" />-->
+        <mapping class="org.example.hw5.task_1.entity.Author"/>
+        <mapping class="org.example.hw5.task_1.entity.Book"/>
 
 
     </session-factory>
