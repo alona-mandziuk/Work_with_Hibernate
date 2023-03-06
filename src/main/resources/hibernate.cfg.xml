@@ -23,7 +23,7 @@
         </property>
 
         <property name="hibernate.connection.password">
-            21032011philia
+            root
         </property>
 
         <property name="connection.pool_size">
