@@ -5,18 +5,20 @@ import org.example.hw5.task_1.entity.Author;
 import org.example.hw5.task_1.entity.Book;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
 import java.util.List;
 
 class BookHelper {
     private SessionFactory sessionFactory;
+
     public BookHelper() {
         sessionFactory = HibernateUtil.getSessionFactory();
     }
+
     public List<Book> getBookList() {
         Session session = sessionFactory.openSession();
         CriteriaQuery<Book> criteriaQuery = session.getCriteriaBuilder().createQuery(Book.class);
         criteriaQuery.from(Book.class);
-
         List<Book> bookList = session.createQuery(criteriaQuery).getResultList();
         session.close();
         return bookList;
@@ -37,8 +39,7 @@ class BookHelper {
         return book;
     }
 
-    public Book addBookById(long id, Book book){
-
+    public Book addBookById(long id, Book book) {
         Session session = sessionFactory.openSession();
         Book book1 = session.get(Book.class, id);
         String name = book.getName();
@@ -48,6 +49,20 @@ class BookHelper {
         session.getTransaction().commit();
         session.close();
         return book;
+
+    }
+
+    public void getBookAndAuthorByBookId(long id) {
+        Session session = sessionFactory.openSession();
+        Book book = session.get(Book.class, id);
+        long authorID = book.getAuthorId();
+        Author author = session.get(Author.class, authorID);
+        System.out.println("----------------------------------------------------");
+        System.out.println(" ");
+        System.out.println("Book id: " + id + ", name: " + book.getName() +
+                ", author: " + author.getName() + " " + author.getLastName() + ".");
+        System.out.println(" ");
+        System.out.println("----------------------------------------------------");
 
     }
 }

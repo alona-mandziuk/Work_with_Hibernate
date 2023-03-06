@@ -1,26 +1,21 @@
 package org.example.hw5.task_1;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
+
 import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Root;
 import org.example.hw5.task_1.entity.Author;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import jakarta.persistence.criteria.*;
-import javax.persistence.Query;
-import javax.persistence.criteria.*;
+
 import java.util.List;
 
-/**
- * Created by Asus on 01.11.2017.
- */
 public class AuthorHelper {
     private SessionFactory sessionFactory;
+
     public AuthorHelper() {
         sessionFactory = HibernateUtil.getSessionFactory();
     }
 
-    public List<Author> getAuthorList(){
+    public List<Author> getAuthorList() {
         Session session = sessionFactory.openSession();
         CriteriaQuery<Author> criteriaQuery = session.getCriteriaBuilder().createQuery(Author.class);
         criteriaQuery.from(Author.class);
@@ -36,13 +31,13 @@ public class AuthorHelper {
         return author;
     }
 
-    public Author addAuthorCicle(Author author){
+    public Author addAuthorCicle(Author author) {
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        for (int i = 0; i <200; i++){
+        for (int i = 0; i < 200; i++) {
             session.save(new Author("name" + i));
-            if (i % 10 == 0){
+            if (i % 10 == 0) {
                 session.flush();
             }
         }
@@ -50,10 +45,9 @@ public class AuthorHelper {
         session.getTransaction().commit();
         session.close();
         return author;
-
     }
 
-    public Author addAuthor(Author author){
+    public Author addAuthor(Author author) {
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
@@ -61,10 +55,9 @@ public class AuthorHelper {
         session.getTransaction().commit();
         session.close();
         return author;
-
     }
 
-    public Author addAuthorById(long id, Author author){
+    public Author addAuthorById(long id, Author author) {
 
         Session session = sessionFactory.openSession();
         Author author1 = session.get(Author.class, id);
@@ -77,6 +70,5 @@ public class AuthorHelper {
         session.getTransaction().commit();
         session.close();
         return author;
-
     }
 }

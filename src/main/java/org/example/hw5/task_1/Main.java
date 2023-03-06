@@ -23,8 +23,8 @@ class Main {
         authorHelper.addAuthor(author1);
         authorHelper.addAuthor(author2);
 
-        // authorHelper.addAuthorCicle(author1);
-        authorHelper.addAuthorById(1, author3);
+        //authorHelper.addAuthorCicle(author1);
+        // authorHelper.addAuthorById(1, author3);
 
         BookHelper bookHelper = new BookHelper();
         Book book1 = new Book();
@@ -48,8 +48,12 @@ class Main {
         bookHelper.addBook(book3);
         bookHelper.addBook(book4);
 
-        bookHelper.addBookById(1, book5);
+        // bookHelper.addBookById(4, book5);
 
+        bookHelper.getBookAndAuthorByBookId(1);
+        bookHelper.getBookAndAuthorByBookId(2);
+        bookHelper.getBookAndAuthorByBookId(3);
+        bookHelper.getBookAndAuthorByBookId(4);
 
     }
 }

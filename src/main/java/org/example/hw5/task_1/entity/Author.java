@@ -4,18 +4,14 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-
 @Entity
 @DynamicUpdate
 @DynamicInsert
 public class Author {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     private String name;
-
     @Column(name = "last_name")
     private String lastName;
 
@@ -24,7 +20,6 @@ public class Author {
     }
 
     public Author() {
-
     }
 
     public long getId() {
@@ -50,5 +45,4 @@ public class Author {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
 }
