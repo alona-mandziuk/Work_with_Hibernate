@@ -8,7 +8,7 @@ import org.hibernate.SessionFactory;
 
 import java.util.List;
 
-public class AuthorHelper {
+class AuthorHelper {
     private SessionFactory sessionFactory;
 
     public AuthorHelper() {
