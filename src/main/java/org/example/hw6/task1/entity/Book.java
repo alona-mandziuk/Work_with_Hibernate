@@ -1,6 +1,7 @@
 package org.example.hw6.task1.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 
 @Entity
@@ -17,6 +18,7 @@ public class Book {
 
     @ManyToOne
     @JoinColumn(name = "author_id")
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private Author author;
 
     public long getId() {

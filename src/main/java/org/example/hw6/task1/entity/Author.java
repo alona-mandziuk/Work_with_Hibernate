@@ -1,6 +1,7 @@
 package org.example.hw6.task1.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ public class Author {
     private String name;
 
     @OneToMany(fetch = FetchType.EAGER, targetEntity = Book.class, mappedBy = "author")
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private List<Book> books = new ArrayList<>();
 
     public Author() {

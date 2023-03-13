@@ -45,7 +45,9 @@ class Main {
       //  authorHelper.changeName();
 
       //  bookHelper.deleteBookById(4);
-       bookHelper.deleteBookByAuthorName("Agatha");
+      // bookHelper.deleteBookByAuthorName("Agatha");
+       // authorHelper.getAuthorByLastName("Brown");
+        authorHelper.deleteAuthorByLastName("Christi");
 
 
     }

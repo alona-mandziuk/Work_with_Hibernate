@@ -37,14 +37,13 @@ class AuthorHelper {
     }
 
 
-
     public Author addAuthor(Author author) {
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(author);
         session.getTransaction().commit();
-       // session.close();
+        // session.close();
         return author;
     }
 
@@ -63,11 +62,62 @@ class AuthorHelper {
         return author;
     }
 
-    public void changeName (){
+    public void changeName() {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         String update = "update Author  a set a.name = '1' where length(a.lastName)  >= 7";
         int updateEntities = session.createQuery(update).executeUpdate();
+        transaction.commit();
+        session.close();
+    }
+
+    /*
+    З пакету ex_002_select_where написати окремий метод для виборки по пошуку виразу
+    */
+
+    public void getAuthorByLastName(String lastName) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery criteriaQuery = criteriaBuilder.createQuery(Author.class);
+        Root<Author> authorRoot = criteriaQuery.from(Author.class);
+        criteriaQuery.select(authorRoot).where(criteriaBuilder.like(authorRoot.get("lastName"),
+                lastName));
+
+        Query query = session.createQuery(criteriaQuery);
+        List<Author> authorList = query.getResultList();
+        System.out.println(" ");
+        System.out.println("--------------------------------------");
+        System.out.println(" ");
+        for (Author a : authorList) {
+            System.out.println("Author ID: " + a.getId() + ": " + a.getName() + " "
+                    + a.getLastName() + ".");
+            System.out.println("Books: ");
+            for (int i = 0; i < a.getBooks().size(); i++) {
+                System.out.println(a.getBooks().get(i).getName());
+            }
+        }
+        System.out.println(" ");
+        System.out.println("--------------------------------------");
+        System.out.println(" ");
+        transaction.commit();
+        session.close();
+    }
+
+    /*
+    D пакеті ex_003_delete методи createCriteria і createCriteriaLogic переписати правильно.
+    */
+
+    public void deleteAuthorByLastName (String lastName){
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaDelete<Author> criteriaDelete = criteriaBuilder.createCriteriaDelete(Author.class);
+        Root<Author> authorRoot = criteriaDelete.from(Author.class);
+
+        criteriaDelete.where(criteriaBuilder.like(authorRoot.get("lastName"), lastName));
+        Query query = session.createQuery(criteriaDelete);
+        query.executeUpdate();
         transaction.commit();
         session.close();
     }
