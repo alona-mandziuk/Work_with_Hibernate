@@ -1,6 +1,5 @@
 package org.example.hw6.task1;
 
-
 import org.example.hw6.task1.entity.Book;
 import org.example.hw6.task1.entity.Author;
 import org.jboss.logging.Logger;
@@ -42,12 +41,14 @@ class Main {
         bookHelper.addBook(book3);
         bookHelper.addBook(book4);
 
-      //  authorHelper.changeName();
+        authorHelper.changeName();
 
-      //  bookHelper.deleteBookById(4);
-      // bookHelper.deleteBookByAuthorName("Agatha");
-       // authorHelper.getAuthorByLastName("Brown");
+        bookHelper.deleteBookById(4);
+        bookHelper.deleteBookByAuthorName("Agatha");
+
+        authorHelper.getAuthorByLastName("Brown");
         authorHelper.deleteAuthorByLastName("Christi");
+        authorHelper.deleteAuthorByNameOrLasName("Goo", "Brown");
 
 
     }

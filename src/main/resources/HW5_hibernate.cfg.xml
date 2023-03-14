@@ -22,11 +22,11 @@
 
         <property name="hibernate.connection.password">root</property>
 
-        <property name="connection.pool_size"> 1    </property>
+        <property name="connection.pool_size">1</property>
 
         <property name="current_session_context_class">thread</property>
 
-        <property name="cache.provider_class"> org.hibernate.cache.NoCacheRegionFactoryAvailableException </property>
+        <property name="cache.provider_class">org.hibernate.cache.NoCacheRegionFactoryAvailableException</property>
 
         <property name="hbm2ddl.auto">create</property>
 
@@ -34,7 +34,6 @@
 
         <mapping class="org.example.hw5.task_1.entity.Author"/>
         <mapping class="org.example.hw5.task_1.entity.Book"/>
-
 
 
     </session-factory>

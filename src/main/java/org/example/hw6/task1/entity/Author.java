@@ -1,7 +1,8 @@
 package org.example.hw6.task1.entity;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +21,9 @@ public class Author {
     @Column(name = "name", nullable = true, length = 255)
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER, targetEntity = Book.class, mappedBy = "author")
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @OneToMany(fetch = FetchType.EAGER, targetEntity = Book.class, mappedBy = "author", cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Book> books = new ArrayList<>();
 
     public Author() {

@@ -6,7 +6,6 @@ import org.example.hw6.task1.entity.Author;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-
 import java.util.List;
 
 class AuthorHelper {
@@ -65,7 +64,7 @@ class AuthorHelper {
     public void changeName() {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        String update = "update Author  a set a.name = '1' where length(a.lastName)  >= 7";
+        String update = "update Author a set a.name = '1' where length(a.lastName)  >= 7";
         int updateEntities = session.createQuery(update).executeUpdate();
         transaction.commit();
         session.close();
@@ -108,14 +107,33 @@ class AuthorHelper {
     D пакеті ex_003_delete методи createCriteria і createCriteriaLogic переписати правильно.
     */
 
-    public void deleteAuthorByLastName (String lastName){
+    public void deleteAuthorByLastName(String lastName) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
+
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaDelete<Author> criteriaDelete = criteriaBuilder.createCriteriaDelete(Author.class);
         Root<Author> authorRoot = criteriaDelete.from(Author.class);
 
-        criteriaDelete.where(criteriaBuilder.like(authorRoot.get("lastName"), lastName));
+        criteriaDelete.where(criteriaBuilder.equal(authorRoot.get("lastName"), lastName));
+        Query query = session.createQuery(criteriaDelete);
+        query.executeUpdate();
+        transaction.commit();
+        session.close();
+    }
+
+    public void deleteAuthorByNameOrLasName(String supposeName, String supposeLastName) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaDelete<Author> criteriaDelete = criteriaBuilder.createCriteriaDelete(Author.class);
+        Root<Author> authorRoot = criteriaDelete.from(Author.class);
+
+        criteriaDelete.where(criteriaBuilder.or(criteriaBuilder.like(authorRoot.get("name"), supposeName),
+                criteriaBuilder.like(authorRoot.get("lastName"), supposeLastName))
+        );
+
         Query query = session.createQuery(criteriaDelete);
         query.executeUpdate();
         transaction.commit();

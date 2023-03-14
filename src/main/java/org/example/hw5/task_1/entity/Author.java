@@ -7,7 +7,7 @@ import org.hibernate.annotations.DynamicUpdate;
 @Entity
 @DynamicUpdate
 @DynamicInsert
-public class Author {
+ public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

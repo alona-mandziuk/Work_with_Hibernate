@@ -12,17 +12,14 @@ repositories {
 dependencies {
     implementation 'org.hibernate:hibernate-core:6.1.7.Final'
     implementation 'mysql:mysql-connector-java:8.0.13'
-//    compileOnly('org.hibernate:hibernate-core:5.2.2.Final')
-//    compileOnly('mysql:mysql-connector-java:6.0.6')
-   // compileOnly group: 'org.slf4j', name: 'slf4j-log4j12', version: '+'
     implementation group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.0-api', version: '1.0.0.Final'
     implementation group: 'org.slf4j', name: 'slf4j-log4j12', version: '+'
     implementation 'com.github.MadaraFsl:HibernateUtil:1.0'
-
     implementation group: 'org.jboss.logging', name: 'jboss-logging', version: '3.1.4.GA'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
-test {    useJUnitPlatform()
+test {
+    useJUnitPlatform()
 }

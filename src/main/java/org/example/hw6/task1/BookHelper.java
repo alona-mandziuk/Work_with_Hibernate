@@ -1,23 +1,21 @@
 package org.example.hw6.task1;
 
 import jakarta.persistence.Query;
-
 import jakarta.persistence.criteria.CriteriaQuery;
 import org.example.hw6.task1.entity.Book;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-
 import java.util.List;
 
 class BookHelper {
     private SessionFactory sessionFactory;
 
-     BookHelper() {
+    BookHelper() {
         sessionFactory = HibernateUtil.getSessionFactory();
     }
 
-     List<Book> getBookList() {
+    List<Book> getBookList() {
         Session session = sessionFactory.openSession();
         CriteriaQuery<Book> criteriaQuery = session.getCriteriaBuilder().createQuery(Book.class);
         criteriaQuery.from(Book.class);
@@ -53,18 +51,14 @@ class BookHelper {
     void deleteBookByAuthorName(String name) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        String delete = "delete from Book where author in (from Author where name = :name1)";
+        String delete = "delete from Book  where author in (from Author where name = :name1)";
 
         Query query = session.createQuery(delete);
         query.setParameter("name1", name);
-       int upd = query.executeUpdate();
-
+        int upd = query.executeUpdate();
         transaction.commit();
         session.close();
     }
-
-
-
 
 
 }
